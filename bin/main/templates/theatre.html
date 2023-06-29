@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset = "utf-8">
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
+      
+      <!-- Bootstrap CSS -->
+      <link rel = "stylesheet" 
+         href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="cinflix.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+
+  <title>Movie Ticket Booking System</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      color: #333333;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    .tickett {
+      margin-top: 10px;
+      padding: 20px;
+      border: 2px solid #dddddd;
+      background-color: #f9f9f9;
+    }
+
+    .tickett h2 {
+      color: #337ab7;
+      font-size: 30px;
+      margin-bottom: 10px;
+      margin-left: 12px;
+    }
+
+    .tickett p {
+      margin-bottom: 5px;
+    }
+
+    .tickett .info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .tickett .info span {
+      color: #888888;
+    }
+
+    .tickett .info .label {
+      font-weight: bold;
+    }
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    /* Hide button when printing */
+    @media print {
+      .button-container {
+        display: none;
+      }
+    }
+    .progressbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+        background-color:#1f004d;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .progressbar li {
+        flex: 1;
+        text-align: center;
+        position: relative;
+      }
+
+      .progressbar li a {
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .progressbar li a:hover {
+        background-color: #d1b3ff;
+      }
+		.navbar-custom {
+        background-color: #0c1d39;
+        border-color: #0c1d39;
+      }
+      .search-movies-input {
+        margin-left: 10px;
+      }
+      .navbar-nav {
+        margin-right: 15px;
+      }
+
+      .logout-button 
+      {
+        margin-left: 40px;
+      }
+      .logout-logo {
+        margin-left: 5px;
+      }
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1f194c;
+        margin: 1em 0;
+      }
+      .progressbar li a.active {
+        background-color: #d1b3ff;
+        color: #1f004d;
+      }
+      .card {
+        width: 100%;
+        height: 100%;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .reset-button {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: #35a64d;
+        color: #ffff;
+        border: 2px solid #333;
+        border-radius: 5px;
+        height: 50px;
+        width: 100px;
+        margin-left: 5px;
+        transition: background-color 0.4s ease, color 0.4s ease;
+        cursor: pointer;
+      }
+      
+      .reset-button 
+      {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+      }
+      .reset-button a 
+      {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 15px;
+        text-decoration: none;
+        color: white;
+      }
+			#headerh1{
+			font-size:8em;
+			margin:0;
+			
+		}
+		
+		.container-fluid{
+			background-color: #1f004d;
+			padding: 30px;
+		}
+		
+      .container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+      #headermain{
+			color: white;
+		}
+		.h4{
+			text-align: center;
+		}
+		hr{border-top: 1px dashed #1f004d;}
+		#email{
+			position: absolute;
+			top:550px;
+			right:40px;
+			width:250px;
+			padding: 10px;
+		}
+		.button{
+			position: absolute;
+			top:600px;
+			right:40px;
+			width:250px;
+		}
+		#sp{
+			position: absolute;
+			top:520px;
+			right:80px;
+		}
+  </style>
+</head>
+<body>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+  		timecal();
+});
+		var showtiming=["11.00 Am","2.00 Pm","6.00 Pm","10.30 Pm"];
+		var showid=0;
+		function timecal()
+		{
+		showid=document.getElementById("showtime").innerText;
+		var showtim=showtiming[showid-1];
+		document.getElementById("showtime").innerHTML=showtim;
+		}
+		function formvalidate()
+		{
+			document.getElementById("showid").value=showid;
+			document.getElementById("conformedseats").value=document.getElementById("cs").innerText;
+			document.getElementById("seatcount").value=document.getElementById("sc").innerText;
+			document.getElementById("date").value=document.getElementById("dt").innerText;
+			document.getElementById("theatrename").value=document.getElementById("tn").innerText;
+			document.getElementById("moviename").value=document.getElementById("mn").innerText;
+			document.getElementById("location").value=document.getElementById("ln").innerText;
+			return true;
+		}
+	</script>
+	<nav style="margin-bottom: 0px" class="navbar navbar-inverse navbar-custom">
+      <div style="padding: 0px; margin: opx" class="container-fluid">
+        <div
+          style="text-align: center; padding-left: 550px"
+          class="navbar-header"
+        >
+          <h1 id="headerh1" style="font-family: Georgia, 'Times New Roman', Times, serif"><a id="headermain" class="navbar-brand" th:href="@{/hd}">CINE-FLIX</a></h1>
+        </div>
+        <li class="reset-button">
+          <a style="color: white; font-size: 15px" th:href="@{/login}">
+            Logout <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </li>
+      
+      </div>
+    </nav>
+    <nav class="progressbar">
+      <ul>
+        <li><a href="#">Search Movies</a></li>
+        <li><a href="#" >Select Theatre</a></li>
+        <li><a href="#">Select Seats</a></li>
+        <li><a href="#" id="last" class="active">Step 4: Book Tickets</a></li>
+      </ul>
+    </nav>
+		<hr><h1 class="h4" style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: 2.3em;">Booking Conformation</h1><hr>
+  <div class="container" >
+	  <label>Thank you for booking with Cine-Flix! Enjoy your movie expericence!</label>
+    <div class="tickett" th:each="s:${bookingconform}">
+      <h2>Movie: <span id="mn" style="color: #d9534f;" th:text="${s.moviename}"></span></h2>
+      <div class="info">
+        <span class="label">Theater:</span>
+        <span id="tn" th:text="${s.theatrename}"></span>
+      </div>
+      <div class="info">
+        <span class="label">Theater Location:</span>
+        <span id="ln" th:text="${s.location}"></span>
+      </div>
+      <div class="info">
+        <span class="label">Date:</span>
+        <span>June <span id="dt" th:text="${s.date}"></span>, 2023</span>
+      </div>
+      <div class="info">
+        <span class="label">Show Time:</span>
+        <span id="showtime" th:text="${s.showid}"></span>
+      </div>
+      <div class="info">
+        <span class="label">Seat Count:</span>
+        <span id="sc" th:text="${s.seatcount}"></span>
+      </div>
+      <div class="info">
+        <span class="label">Seats:</span>
+        <span id="cs" th:text="${s.conformedseats}"></span>
+      </div>
+    </div>
+  </div>
+  <form th:action="@{/ticketconform}" th:object="${ticket}" method="post" onsubmit="return formvalidate()">
+	  <div class="button-container">
+		  <span id="sp"><input type="checkbox" id="ck" value="1"> I agree on All Terms and Policy</span>
+	  <input type="text" id="email" placeholder="Please Enter your Email once again" field="*{email}" name="email" required/>
+    </div>
+    <input type="hidden" id="conformedseats" field="*{conformedseats}" name="conformedseats" required/>
+    <input type="hidden" id="seatcount" field="*{seatcount}" name="seatcount" required/>
+    <input type="hidden" id="date" field="*{date}" name="date" required/>
+    <input type="hidden" id="moviename" field="*{moviename}" name="moviename" required/>
+    <input type="hidden" id="theatrename" field="*{theatrename}" name="theatrename" required/>
+    <input type="hidden" id="showid" field="*{showid}" name="showid" required/>
+     <input type="hidden" id="location" field="*{location}" name="location" required/>
+    <input type="submit" class="button" value="Book Ticket">
+  </form>
+  
+</body>
+</html>

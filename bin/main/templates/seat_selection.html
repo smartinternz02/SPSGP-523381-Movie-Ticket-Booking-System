@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Movie Ticket Booking</title>
+    <!-- Meta tags -->
+      <meta charset = "utf-8">
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
+      
+      <!-- Bootstrap CSS -->
+      <link rel = "stylesheet" 
+         href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="cinflix.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .seatMap {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-gap: 10px;
+        justify-content: center;
+      }
+
+      .seat {
+        display: none;
+      }
+
+      .seatLabel {
+        width: 30px;
+        height: 30px;
+        background-color: lightgray;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .seatLabel.selected {
+        background-color: teal;
+      }
+
+      .seatLabel.blocked {
+        background-color: gray;
+        cursor: not-allowed;
+      }
+      	body {
+        box-sizing: border-box;
+        margin: 0px;
+      }
+      .progressbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+        background-color:#1f004d;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .progressbar li {
+        flex: 1;
+        text-align: center;
+        position: relative;
+      }
+
+      .progressbar li a {
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .progressbar li a:hover {
+        background-color: #d1b3ff;
+      }
+		.navbar-custom {
+        background-color: #0c1d39;
+        border-color: #0c1d39;
+      }
+      .search-movies-input {
+        margin-left: 10px;
+      }
+      .navbar-nav {
+        margin-right: 15px;
+      }
+
+      .logout-button 
+      {
+        margin-left: 40px;
+      }
+      .logout-logo {
+        margin-left: 5px;
+      }
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1f194c;
+        margin: 1em 0;
+      }
+      .progressbar li a.active {
+        background-color: #d1b3ff;
+        color: #1f004d;
+      }
+      .card {
+        width: 100%;
+        height: 100%;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .reset-button {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: #35a64d;
+        color: #ffff;
+        border: 2px solid #333;
+        border-radius: 5px;
+        height: 50px;
+        width: 100px;
+        margin-left: 5px;
+        transition: background-color 0.4s ease, color 0.4s ease;
+        cursor: pointer;
+      }
+      
+      .reset-button 
+      {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+      }
+      .reset-button a 
+      {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 15px;
+        text-decoration: none;
+        color: white;
+      }
+			#headerh1{
+			font-size:8em;
+			margin:0;
+			
+		}
+		
+		.container-fluid{
+			background-color: #1f004d;
+			padding: 30px;
+		}
+		
+      .container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+      #headermain{
+			color: white;
+		}
+		.h4{
+			text-align: center;
+		}
+		hr{border-top: 1px dashed #1f004d;}
+		#maindiv{
+			margin: auto;
+			width:80%;
+			border-radius: 2%;
+			border: 4px solid #1f004d;
+			padding:10px;
+		}
+		.button {
+			position: absolute;
+			top:620px;
+			right:60px;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: #35a64d;
+        color: #ffff;
+        border: 2px solid #333;
+        border-radius: 5px;
+        transition: background-color 0.4s ease, color 0.4s ease;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #f1f1f1;
+        color: #35a64d;
+        border: 2px solid #35a64d;
+      }
+      .form-control{
+		  position: absolute;
+		  top:230px;
+		  left:100px;
+		  width:250px;
+	  }
+	  .form-control:focus{
+        color: #35a64d;
+        border: 2px solid #35a64d;
+	  }
+	  .label {
+  color: white;
+  padding: 8px;
+  font-family: Arial;
+}
+.a {margin:10px;padding:15px;font-size:1.2em;color: teal;background-color: lightgray;}
+.b {margin:10px;padding:15px;font-size:1.2em;background-color: teal;}
+	.agenda{
+		position: absolute;
+		top:520px;
+		left:100px;
+	}
+    </style>
+  </head>
+  <body>
+	  <nav style="margin-bottom: 0px" class="navbar navbar-inverse navbar-custom">
+      <div style="padding: 0px; margin: opx" class="container-fluid">
+        <div
+          style="text-align: center; padding-left: 550px"
+          class="navbar-header"
+        >
+          <h1 id="headerh1" style="font-family: Georgia, 'Times New Roman', Times, serif"><a id="headermain" class="navbar-brand" th:href="@{/hd}">CINE-FLIX</a></h1>
+        </div>
+        <li class="reset-button">
+          <a style="color: white; font-size: 15px" th:href="@{/login}">
+            Logout <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </li>
+      
+      </div>
+    </nav>
+    <nav class="progressbar">
+      <ul>
+        <li><a href="#">Search Movies</a></li>
+        <li><a href="#" >Select Theatre</a></li>
+        <li><a href="#" class="active">Step 3:Select Seats</a></li>
+        <li><a href="#" id="last">Book Tickets</a></li>
+      </ul>
+    </nav>
+    <hr><h1 class="h4" style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: 2.3em;">Select the Seats you Want</h1><hr>
+    <div class="container">
+      <form class="seatMap" id="seatMap" ></form>
+    </div>
+<!--    <button type="hidden" onclick="blockSeat()">Block Seat</button>-->
+
+    <script>
+      var selectedSeats = [];
+	  var bookedseats="[[${bookedseats}]]";
+	  const cleanedArray = bookedseats.replace(/[\[\] ]/g, '');
+		const numbers = cleanedArray.split(',');
+		const resultArray = numbers.map(num => String(num));
+		var blockedSeats = resultArray.map(ra => {
+  		const row = parseInt(ra.charAt(0));
+  		const column = parseInt(ra.charAt(1));
+  		return { row, column };
+		});
+
+      function createSeatMap() {
+        var seatMap = document.getElementById("seatMap");
+        for (var i = 0; i < 10; i++) {
+          for (var j = 0; j < 10; j++) {
+            var seat = document.createElement("input");
+            seat.type = "checkbox";
+            seat.className = "seat";
+            seat.id = "seat-" + (i + 1) + "-" + (j + 1);
+            seat.setAttribute("data-row", i + 1);
+            seat.setAttribute("data-column", j + 1);
+            seat.addEventListener("change", toggleSeat);
+
+            var seatLabel = document.createElement("label");
+            seatLabel.className = "seatLabel";
+            seatLabel.setAttribute("for", "seat-" + (i + 1) + "-" + (j + 1));
+
+            if (isSeatBlocked(i + 1, j + 1)) {
+              seat.disabled = true;
+              seatLabel.classList.add("blocked");
+            }
+
+            seatMap.appendChild(seat);
+            seatMap.appendChild(seatLabel);
+          }
+        }
+      }
+      function getAlphabetLetter(number) {
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const index = number - 1;
+        if (index >= 0 && index < alphabet.length) {
+          return alphabet.charAt(index);
+        }
+      }
+      function toggleSeat() {
+        var row = this.getAttribute("data-row");
+        var column = this.getAttribute("data-column");
+        var seat = { row: row, column: column };
+
+        if (this.checked) {
+          selectedSeats.push(seat);
+        } else {
+          var index = findSeatIndex(row, column);
+          if (index !== -1) {
+            selectedSeats.splice(index, 1);
+          }
+        }
+
+        updateSeatStatus(seat);
+      }
+
+      function findSeatIndex(row, column) {
+        for (var i = 0; i < selectedSeats.length; i++) {
+          if (
+            selectedSeats[i].row === row &&
+            selectedSeats[i].column === column
+          ) {
+            return i;
+          }
+        }
+        return -1;
+      }
+     function updateSeatStatus(seat) {
+        var seatCheckbox = document.getElementById(
+          "seat-" + seat.row + "-" + seat.column
+        );
+        var seatLabel = seatCheckbox.nextElementSibling;
+
+        if (seatCheckbox.checked) {
+          seatLabel.classList.add("selected");
+        } else {
+          seatLabel.classList.remove("selected");
+        }
+      }
+	  var seatnumbers = [];
+      function getSelectedSeats() {
+        var selectedSeatInfo = "";
+        for (var i = 0; i < selectedSeats.length; i++) {
+          selectedSeatInfo +="" +getAlphabetLetter(selectedSeats[i].row) +"" +selectedSeats[i].column;
+          seatnumbers.push(selectedSeatInfo);
+          selectedSeatInfo = "";
+        }
+        if(seatnumbers.length==0)
+        {
+			alert("Please, select the seats you want to book");
+			return false;
+		}
+		else{
+        
+        var seatcount=parseInt(document.getElementById("seatcount").value);
+        if(seatcount==null ||seatcount<=0)
+        {
+			alert("Please fill out the number of seats you want to book");
+			document.getElementById("seatcount").focus();
+			return false;
+		}
+		else{
+		var temp=parseInt("[[${availableseats}]]");
+        if(seatcount<temp)
+        {
+			if(seatcount==seatnumbers.length)
+			{
+				alert("The selected seats are"+seatnumbers);
+				document.getElementById("conformedseats").value=seatnumbers;
+				return true;
+			}
+			else
+		{
+			alert("Your seat count and the number of seats you selected mismatch");
+			document.getElementById("seatcount").focus();
+			return false;
+		}
+		}
+		
+		else{
+				alert("You have selected more than the available seats");
+				document.getElementById("seatcount").focus();
+				return false;
+			}
+		}
+		}
+		
+		
+	  }
+
+      function isSeatBlocked(row, column) {
+        for (var i = 0; i < blockedSeats.length; i++) {
+          if (
+            blockedSeats[i].row === row &&
+            blockedSeats[i].column === column
+          ) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+     /* function blockSeat() {
+        var row = prompt("Enter the row number of the seat to block:");
+        var column = prompt("Enter the column number of the seat to block:");
+
+        if (row && column) {
+          row = parseInt(row);
+          column = parseInt(column);
+
+          if (!isNaN(row) && !isNaN(column)) {
+            var seatToBlock = { row: row, column: column };
+            if (!isSeatBlocked(row, column)) {
+              blockedSeats.push(seatToBlock);
+              updateSeatStatus(seatToBlock);
+              disableSeat(row, column);
+            } else {
+              alert("Seat is already blocked!");
+            }
+          } else {
+            alert("Invalid row or column number!");
+          }
+        } else {
+          alert("Invalid input!");
+        }
+      }
+
+      function disableSeat(row, column) {
+        var seatCheckbox = document.getElementById(
+          "seat-" + row + "-" + column
+        );
+        seatCheckbox.disabled = true;
+        seatCheckbox.nextElementSibling.classList.add("blocked");
+      }*/
+
+      createSeatMap();
+    </script>
+    <br>
+    <form method="post" th:action="@{/ticketgen}" th:object="${ticket}" onsubmit="return getSelectedSeats()" >
+		<input style="border-color: #333"
+            class="form-control" type="text" placeholder="Enter the number of seats" name="seatcount" id="seatcount" field="*{seatcount}" required/>
+		<input id="theatreid" type="hidden" value="" field="*{theatreid}" name="theatreid">
+		<input id="date" type="hidden" value="" field="*{date}" name="date">
+		<input id="conformedseats" type="hidden" value="" field="*{conformedseats}" name="conformedseats">
+		<input id="showid" type="hidden" value="" field="*{showid}" name="showid">
+		
+		<button class="button" type="submit">Proceed for Ticket Conformation</button>
+	</form>
+	<div class="agenda">
+		<label>Agenda:</label><br><br>
+		<span class="label a">Available</span><br><br><br>
+		<span class="label b">Booked</span> 
+	</div>
+	
+	<script> 
+		var thid="[[${Theatreid}]]";
+		var date="[[${date}]]";
+		var showid="[[${showid}]]";
+		document.getElementById("theatreid").value=thid;
+		document.getElementById("date").value=date;
+		document.getElementById("showid").value=showid;
+	</script>
+  </body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>
+			Movie ticket booking system
+		</title>
+		<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset = "utf-8">
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
+      
+      <!-- Bootstrap CSS -->
+      <link rel = "stylesheet" 
+         href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="cinflix.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+
+		 <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f2f2f2;
+    }
+    body {
+        box-sizing: border-box;
+        margin: 0px;
+      }
+      .progressbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+        background-color:#1f004d;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .progressbar li {
+        flex: 1;
+        text-align: center;
+        position: relative;
+      }
+
+      .progressbar li a {
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .progressbar li a:hover {
+        background-color: #d1b3ff;
+      }
+		.navbar-custom {
+        background-color: #0c1d39;
+        border-color: #0c1d39;
+      }
+      .search-movies-input {
+        margin-left: 10px;
+      }
+      .navbar-nav {
+        margin-right: 15px;
+      }
+
+      .logout-button 
+      {
+        margin-left: 40px;
+      }
+      .logout-logo {
+        margin-left: 5px;
+      }
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1f194c;
+        margin: 1em 0;
+      }
+      .progressbar li a.active {
+        background-color: #d1b3ff;
+        color: #1f004d;
+      }
+      .reset-button {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: #35a64d;
+        color: #ffff;
+        border: 2px solid #333;
+        border-radius: 5px;
+        height: 50px;
+        width: 100px;
+        margin-left: 5px;
+        transition: background-color 0.4s ease, color 0.4s ease;
+        cursor: pointer;
+      }
+      
+      .reset-button 
+      {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+      }
+      .reset-button a 
+      {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 15px;
+        text-decoration: none;
+        color: white;
+      }
+			#headerh1{
+			font-size:8em;
+			margin:0;
+			
+		}
+		
+		.container-fluid{
+			background-color: #1f004d;
+			padding: 30px;
+		}
+      #headermain{
+			color: white;
+		}
+
+		.h4{
+			text-align: center;
+		}
+		hr{border-top: 1px dashed #1f004d;}
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      color: #333333;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    .ticket {
+      margin-top: 40px;
+      padding: 20px;
+      border: 2px solid #dddddd;
+      background-color: #f9f9f9;
+    }
+
+    .ticket h2 {
+      color: #337ab7;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .ticket p {
+      margin-bottom: 5px;
+    }
+
+    .ticket .info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .ticket .info span {
+      color: #888888;
+    }
+
+    .ticket .info .label {
+      font-weight: bold;
+    }
+
+    .ticket .barcode {
+      text-align: center;
+      margin-top: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      padding: 10px;
+      max-width: 50%;
+      position: relative;
+      left:25%;
+
+    }
+
+    .ticket .barcode img {
+      max-width: 50%;
+      height: 50%;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+      .but{
+	 display: inline-block;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        margin: auto;
+        font-size: 20px;
+        border: solid 2px #333;
+        transition: transform 0.2s ease-in-out;
+        width: 250px;
+        
+}
+.but:hover {
+        transform: scale(1.1);
+      }
+      
+  </style>
+	</head>
+	<body>
+			<nav style="margin-bottom: 0px" class="navbar navbar-inverse navbar-custom">
+      <div style="padding: 0px; margin: opx" class="container-fluid">
+        <div
+          style="text-align: center; padding-left: 550px"
+          class="navbar-header"
+        >
+          <h1 id="headerh1" style="font-family: Georgia, 'Times New Roman', Times, serif"><a id="headermain" class="navbar-brand" th:href="@{/hd}">CINE-FLIX</a></h1>
+        </div>
+        <li class="reset-button">
+          <a style="color: white; font-size: 15px" th:href="@{/login}">
+            Logout <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </li>
+      
+      </div>
+    </nav>
+    <nav class="progressbar">
+      <ul>
+        <li><a href="#">Search Movies</a></li>
+        <li><a href="#" >Select Theatre</a></li>
+        <li><a href="#">Select Seats</a></li>
+        <li><a href="#" id="last" >Book Tickets</a></li>
+      </ul>
+    </nav>
+		<hr><h1 class="h4" style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: 2.3em;">Tickets that you have Booked</h1><hr>
+			<div class="container" >
+    <p>Your ticket details are as follows:</p>
+
+    <div class="ticket" th:each="s:${tickets}">
+      <h2>Movie: <span id="mn" style="color: #d9534f;" th:text="${s.moviename}"></span></h2>
+      <div class="info">
+        <span class="label">Theater:</span>
+        <span id="tn" th:text="${s.theatrename}"></span>
+      </div>
+      <div class="info">
+        <span class="label">Theater Location:</span>
+        <span th:text="${s.location}"></span>
+      </div>
+      <div class="info">
+        <span class="label">Date:</span>
+        <span>June <span id="dt" th:text="${s.date}"></span>, 2023</span>
+      </div>
+      <div class="info">
+        <span class="label">Show Time:</span>
+        <span id="showtime" th:text="${s.showid}"></span>
+      </div>
+      <div class="info">
+        <span class="label">Seat Count:</span>
+        <span id="sc" th:text="${s.seatcount}"></span>
+      </div>
+      <div class="info">
+        <span class="label">Seats:</span>
+        <span id="cs" th:text="${s.conformedseats}"></span>
+      </div>
+    </div>
+  </div>
+  <a class="but" th:href="@{/hd}">Go back to Homepage</a>
+	</body>
+	
+</html>

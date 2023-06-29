@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Movie Ticket Booking System</title>
+    <link rel="icon" type="image/x-icon" href="cinflix.ico">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: url("bgimg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .container {
+        background-color: #f1f1f1;
+        height:85%;
+        width: 60%;
+        text-align: center;
+        position: absolute;
+        left: 17%;
+        top: 5%;
+        bottom: 5%;
+        border-radius: 10px;
+        padding: 2%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .about-us p {
+        align-items: center;
+        font-size: large;
+        margin-top: 10px;
+        color: #555;
+        padding: 10px;
+      }
+
+      .but a {
+        display: inline-block;
+        padding: 10px 40px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        margin: 10px 5%;
+        font-size: 20px;
+        border: solid 2px #333;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .but a:hover {
+        transform: scale(1.1);
+      }
+
+      h1 {
+        margin-bottom: 30px;
+        margin-top: 0;
+        color: #333;
+      }
+      .but {
+        margin: 3% 5%;
+      }
+      .contact-section {
+        text-align: center;
+
+        background-color: #f1f1f1;
+      }
+
+      .contact-section a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #000;
+      }
+
+      .contact-section img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      #para{
+		  text-align: justify;
+	  }
+	  #h1header{
+		  display: inline;
+		  padding-left: 20px;
+	  }
+	  #imgheader{
+		  border-radius: 50%;
+	  }
+	  .tablecenter{
+		  margin-left: auto;
+  		  margin-right: auto;
+	  }
+    </style>
+  </head>
+  <body>
+	  
+    <div class="container">
+		<table class="tablecenter">
+			<tr>
+				<td><img id="imgheader" src="cinflix.png" alt="cineflix" width="100" height="100"></td>
+				<td><h1 id="h1header">Cine-Flix</h1></td>
+			</tr>
+		</table>
+      <h2>Your One-Stop destination for Movie Ticket Booking System</h2>
+      <div class="about-us">
+        <p id="para">
+          Welcome to our movie ticket booking website! We are dedicated to
+          providing you with a seamless and convenient movie ticket booking
+          experience.Whether you're a fan of thrilling action, heartwarming romance, or
+          captivating dramas, we have a wide selection of movies to cater to
+          every taste. Join us and embark on a cinematic journey, where we bring
+          the magic of movies to your fingertips.
+        </p>
+      </div>
+      <div class="but">
+        <a th:href="@{/register}">Register</a>
+        <a th:href="@{/login}">Login</a>
+      </div>
+      <div class="contact-section">
+        <h2>Contact & Support Us</h2>
+        <p>
+          Feel free to reach out to us through any of the following channels:
+        </p>
+        <a href="https://www.facebook.com/example" target="_blank">
+          <img
+            src="https://img.icons8.com/color/48/facebook-new.png"
+            alt="facebook-new"
+          />
+        </a>
+
+        <a href="https://twitter.com/b_a_r_a_n_i_" target="_blank">
+          <img
+            src="https://img.icons8.com/color/48/twitter--v1.png"
+            alt="twitter--v1"
+          />
+        </a>
+
+        <a href="https://www.instagram.com/example" target="_blank">
+          <img
+            src="https://img.icons8.com/fluency/48/instagram-new.png"
+            alt="instagram-new"
+          />
+        </a>
+
+        <a href="https://www.linkedin.com/in/barani-dharan-saravanan-5a2677249" target="_blank">
+          <img
+            src="https://img.icons8.com/color/48/linkedin.png"
+            alt="linkedin"
+          />
+        </a>
+
+        <p>
+          If you have any questions or need assistance, please contact us via
+          email.
+        </p>
+
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:baranidharansaravanan36@example.com">baranidharansaravanan36@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

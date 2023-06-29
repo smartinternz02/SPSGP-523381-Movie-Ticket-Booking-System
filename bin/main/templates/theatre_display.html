@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>
+			Movie Ticket Booking System
+		</title>
+		<!-- Meta tags -->
+      <meta charset = "utf-8">
+      <meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
+      
+      <!-- Bootstrap CSS -->
+      <link rel = "stylesheet" 
+         href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="icon" type="image/x-icon" href="cinflix.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<style>
+			body {
+        box-sizing: border-box;
+        margin: 0px;
+      }
+      .progressbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+        background-color:#1f004d;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .progressbar li {
+        flex: 1;
+        text-align: center;
+        position: relative;
+      }
+
+      .progressbar li a {
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .progressbar li a:hover {
+        background-color: #d1b3ff;
+      }
+		.navbar-custom {
+        background-color: #0c1d39;
+        border-color: #0c1d39;
+      }
+      .search-movies-input {
+        margin-left: 10px;
+      }
+      .navbar-nav {
+        margin-right: 15px;
+      }
+
+      .logout-button 
+      {
+        margin-left: 40px;
+      }
+      .logout-logo {
+        margin-left: 5px;
+      }
+      h1 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1f194c;
+        margin: 1em 0;
+      }
+      .progressbar li a.active {
+        background-color: #d1b3ff;
+        color: #1f004d;
+      }
+      .reset-button {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: #35a64d;
+        color: #ffff;
+        border: 2px solid #333;
+        border-radius: 5px;
+        height: 50px;
+        width: 100px;
+        margin-left: 5px;
+        transition: background-color 0.4s ease, color 0.4s ease;
+        cursor: pointer;
+      }
+      
+      .reset-button 
+      {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+      }
+      .reset-button a 
+      {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 15px;
+        font-size: 15px;
+        text-decoration: none;
+        color: white;
+      }
+			#headerh1{
+			font-size:8em;
+			margin:0;
+			
+		}
+		
+		.container-fluid{
+			background-color: #1f004d;
+			padding: 30px;
+		}
+      #headermain{
+			color: white;
+		}
+
+		.h4{
+			text-align: center;
+		}
+		hr{border-top: 1px dashed #1f004d;}
+
+		#maindiv{
+			margin: auto;
+			width:70%;
+			border-radius: 2%;
+			border: 4px solid #1f004d;
+			padding:10px;
+      height:fit-content;	
+      text-align: left;
+    	}
+        .inputdiv{
+          font-size: large;
+          margin:30px
+        }
+
+    .goright{
+      float:right;
+     text-align: right;
+    }
+      	.flexshow{
+			  display:block;
+			  width:155px;
+			  border: 2px solid #1f004d;
+        text-align: center;
+			  margin-left: 20px;
+        padding:3%;
+        height:auto;
+        margin-top:3%;
+        overflow: visible;
+		  }
+      .theater-container{
+        padding:30px;
+      }
+      .bookit{
+        position: relative;
+       left:45%;
+       color: #4caf50;
+		  border:2px solid #4caf50;
+		  padding:10px 20px;
+		  align-items: center;
+		  margin-left: 10px;
+      }
+      .slots{
+      align-items: center;
+      }
+      
+.slotsholder{
+	display: flex;
+	flex-direction: row;
+}
+#lablediv{
+	clear:both;
+	display: block;
+}
+#but{
+	 display: inline-block;
+        padding: 10px 40px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        margin: 10px 5%;
+        font-size: 20px;
+        border: solid 2px #333;
+        transition: transform 0.2s ease-in-out;
+}
+#but:hover {
+        transform: scale(1.1);
+      }
+      #para{
+		  margin-left: 430px;
+	  }
+	  .radiotoolbarlabel{
+		  position: relative;
+		  color: #4caf50;
+		  border:2px solid #4caf50;
+		  padding:10px 20px;
+		  align-items: center;
+	  }
+	  .radiotoolbar:checked+label{
+		  background-color: #4caf50;
+		  color: white;
+	  }
+	  #last:checked+label{
+		  background-color: #4caf50;
+		  color: white;
+	  }
+
+		</style>
+	</head>
+	<body>
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+  		showidcal();
+});
+var temp=0,temp2=0;
+		function showidcal()
+		{
+			var rdj=document.getElementsByClassName("radiotoolbar");
+			for(var i=0;i<rdj.length;i++)
+			{
+				var rd=rdj[i].value;
+			switch(rd)
+			{
+				case "1": rd="11.00 Am";break;
+				case "2":rd="2.00 Pm";break;
+				case "3":rd="6.00 Pm";break;
+				case "4":rd="10.30 Pm";break;
+			}
+			document.getElementsByClassName("radiotoolbarlabel")[i].innerText=rd;
+			}
+		}
+		</script>
+		<nav style="margin-bottom: 0px" class="navbar navbar-inverse navbar-custom">
+      <div style="padding: 0px; margin: opx" class="container-fluid">
+        <div
+          style="text-align: center; padding-left: 550px"
+          class="navbar-header"
+        >
+          <h1 id="headerh1" style="font-family: Georgia, 'Times New Roman', Times, serif"><a id="headermain" class="navbar-brand" th:href="@{/hd}">CINE-FLIX</a></h1>
+        </div>
+        <li class="reset-button">
+          <a style="color: white; font-size: 15px" th:href="@{/login}">
+            Logout <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </li>
+      
+      </div>
+    </nav>
+    <nav class="progressbar">
+      <ul>
+        <li><a th:href="@{/hd}">Search Movies</a></li>
+        <li><a href="#" class="active">Step 2:Select Theatre</a></li>
+        <li><a href="#">Select Seats</a></li>
+        <li><a href="#" id="last">Book Tickets</a></li>
+      </ul>
+    </nav>
+		<hr><h1 class="h4" style="font-family: Georgia, 'Times New Roman', Times, serif;font-size: 2.3em;">List Of Theatres Available</h1><hr>
+		<div th:each="l1:${selectedtheatres}" id="maindiv" class="shadow-lg p-3 mb-5 bg-white rounded theaters-container" style="border: 2px solid black;">
+			<div class="inputdiv"><label>Theatre name:</label> <span class="goright" th:text="${l1.theatrename}"></span></div>
+			<div class="inputdiv"><label>Theatre Location:</label> <span class="goright" th:text="${l1.location}"></span></div>
+			<div th:each="s:${l1.seats}" class="inputdiv">
+				<label>Current Selected Date:</label> <span class="goright" th:text="${s.date}"></span> <input type="hidden" th:value="${s.date}" id="dateint"/>
+				<br><br>
+				<label id="lablediv">Please Select the Show Timing:</label>
+				<div class="slotsholder">
+				<div  class="slots" th:each="k:${s.shows}">
+					<span id="showborder" class="flexshow" >
+						<input id="radiobut" class="radiotoolbar" type="radio" name="show" th:value="${k.show_id}"/> <label id="radiolabel" class="radiotoolbarlabel" th:text="${k.show_id}">1</label>
+					<h3  th:text="${k.no_of_seats}">190</h3>
+					</span>
+      
+				</div>
+				</div>
+			</div>
+			<input type="radio" class="bookit" name="theatre" th:value="${l1.theatreid}" onclick="displayRadioValue()" id="last"/><label for="theatre" class="bookit">Book now</label>
+		</div>
+		<p id="para"></p>
+		<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+        function displayRadioValue() {
+			var ele3=document.getElementById('dateint').value;
+            var ele = document.getElementsByName('show');
+ 
+            for (i = 0; i < ele.length; i++) {
+                if (ele[i].checked)
+                {
+					temp=ele[i].value;
+				}
+            }
+            var ele1= document.getElementsByName('theatre');
+ 
+            for (i = 0; i < ele1.length; i++) {
+                if (ele1[i].checked)
+                {
+					temp2=ele1[i].value;
+				}
+            }
+            if(temp==0)
+            	alert("Please Select the show timing");
+            else
+            {
+				var link = /*[[@{/}]]*/'';
+				document.getElementById("para").innerHTML='<a id="but" href="seatselection/theatreid/'+temp2+'/showid/'+temp+'/date/'+ele3+'">Select number of seats</a>';
+			}
+        }
+    </script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src = "https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+         integrity = "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+         crossorigin = "anonymous">
+      </script>
+      
+      <!-- Popper -->
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+         integrity = "sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+         crossorigin = "anonymous">
+      </script>
+      
+      <!-- Latest compiled and minified Bootstrap JavaScript -->
+      <script src =" https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+         integrity = "sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+         crossorigin = "anonymous">
+      </script>
+	</body>
+	
+	
+</html>
