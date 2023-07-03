@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <title>Form</title>
+  </head>
+  <style>
+    * {
+      line-height: 20px;
+    }
+    body {
+      background-color: bisque;
+      font-family: sans-serif;
+      color: brown;
+    }
+
+    legend {
+      color: black;
+      font-weight: bold;
+      font-size: larger;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    }
+    .btn1 {
+      background-color: brown;
+      color: bisque;
+      padding: 20;
+      margin-left: 30px;
+      border: 2px solid black;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: medium;
+    }
+    select {
+      background-color: brown;
+      color: bisque;
+      padding: 9px;
+      border: black;
+    }
+  </style>
+  <body>
+    <b>
+      <form>
+        <fieldset>
+          <legend>Personal Info</legend>
+          <label for="fname">First Name: </label>
+          <input
+            type="text"
+            placeholder="First name"
+            id="fname"
+            size="37"
+          /><br />
+          <label for="lname">Last&nbsp; Name: </label>
+          <input type="text" placeholder="Last name" id="lname" size="37" />
+        </fieldset>
+        <br />
+        <br />
+        <fieldset>
+          <legend>Course Info</legend>
+          Course:<br />
+          <input type="radio" id="web" />
+          <label for="web">Web Design</label><br />
+          <input type="radio" id="sql" checked />
+          <label for="sql">SQL</label><br />
+          <input type="radio" id="prog" />
+          <label for="prog">Programming</label><br /><br />
+          Career Goal:<br />
+          <select>
+            <option>Programmer</option>
+            <option>Doctor</option>
+            <option>Other</option></select
+          ><br /><br />
+          <div class="options">
+            Skills (check all that apply):<br />
+            <input type="checkbox" id="un" />
+            <label for="un">UNIX</label>
+            <input type="checkbox" id="vim" />
+            <label for="vim">VIM</label><br />
+            <input type="checkbox" id="html" />
+            <label for="html">HTML</label>
+            <input type="checkbox" id="css" />
+            <label for="css">CSS</label><br />
+            <input type="checkbox" id="py" />
+            <label for="py">Python</label>
+            <input type="checkbox" id="js" />
+            <label for="js">JavaScript</label><br /><br />
+          </div>
+          Describe any additional skills you have:<br />
+          <textarea
+            placeholder="  Additional skill that you have...."
+            rows="5"
+            cols="70"
+          ></textarea>
+        </fieldset>
+        <br />
+
+        <input class="btn1" type="Submit" value="Enter my information" />
+      </form>
+    </b>
+  </body>
+</html>
